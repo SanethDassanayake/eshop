@@ -159,7 +159,7 @@ include "connection.php";
                                         for ($z = 0; $z < $product_num; $z++) {
                                             $product_data = $product_rs->fetch_assoc();
 
-                                        ?>
+                                        ?> 
 
                                             <div class="card col-6 col-lg-2 mt-2 mb-2" style="width: 18rem;">
 

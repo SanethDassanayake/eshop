@@ -214,7 +214,7 @@ if (isset($_SESSION["u"])) {
                                         $product_rs = Database::search("SELECT * FROM `product` WHERE `user_email`='" . $email . "'");
                                         $product_num = $product_rs->num_rows;
 
-                                        $results_per_page = 5;
+                                        $results_per_page = 6;
                                         $number_of_pages = ceil($product_num / $results_per_page);
 
                                         $page_results = ($pageno - 1) * $results_per_page;
@@ -256,7 +256,9 @@ if (isset($_SESSION["u"])) {
                                                                 <div class="col-12">
                                                                     <div class="row g-1">
                                                                         <div class="col-12 d-grid">
-                                                                            <button class="btn btn-success fw-bold">Update</button>
+                                                                            <button class="btn btn-success fw-bold" onclick="sendid(<?php echo $selected_data['id']; ?>);">
+                                                                                Update
+                                                                            </button>
                                                                         </div>
                                                                     </div>
                                                                 </div>

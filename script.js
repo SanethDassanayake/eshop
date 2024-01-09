@@ -401,3 +401,65 @@ function sort1(x){
 function clearSort(){
     window.location.reload();
 }
+
+function sendid(id){
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function (){
+        if(request.status == 200 & request.readyState == 4){
+            var response = request.responseText;
+
+            if(response == "Success"){
+                window.location = "updateProduct.php";
+            }else{
+                alert (response);
+            }
+        }
+    }
+
+    request.open("GET","sendIdProcess.php?id=" + id,true);
+    request.send();
+
+}
+
+function updateProduct(){
+
+    var title = document.getElementById("t");
+    var qty = document.getElementById("q");
+    var dwc = document.getElementById("dwc");
+    var doc = document.getElementById("doc");
+    var description = document.getElementById("d");
+    var images = document.getElementById("imageuploader");
+
+    var form = new FormData();
+    form.append ("t",title.value);
+    form.append ("q",qty.value);
+    form.append ("dwc",dwc.value);
+    form.append ("doc",doc.value);
+    form.append ("d",description.value);
+    
+    var file_count = images.files.length;
+
+    for(var x = 0;x < file_count;x++){
+        form.append ("i" + x,images.files[x]);
+    }
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function (){
+        if(request.status == 200 & request.readyState == 4){
+            var response = request.responseText;
+            if(response == "Product has been Updated."){
+                window.location = "myProducts.php";
+            }else{
+                alert (response);
+            }
+            
+        }
+    }
+
+    request.open("POST","updateProductProcess.php",true);
+    request.send(form);
+
+}
